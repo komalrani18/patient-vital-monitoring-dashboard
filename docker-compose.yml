@@ -1,0 +1,18 @@
+# Local databases for development: `docker compose up -d`
+services:
+  mongo:
+    image: mongo:7
+    ports: ['27017:27017']
+    volumes: ['mongo-data:/data/db']
+
+  redis:
+    image: redis:7-alpine
+    # This Redis is a disposable CACHE, so configure it like one:
+    #  --maxmemory + allkeys-lru: when full, evict the least-recently-used keys instead of
+    #                             refusing writes or running out of RAM
+    #  --save "":                 no disk snapshots; everything here can be recomputed from Mongo
+    command: ['redis-server', '--maxmemory', '128mb', '--maxmemory-policy', 'allkeys-lru', '--save', '']
+    ports: ['6379:6379']
+
+volumes:
+  mongo-data:

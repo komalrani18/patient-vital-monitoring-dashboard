@@ -1,0 +1,49 @@
+@import 'tailwindcss';
+
+/*
+ * Palette: surgical "theatre green" for everything structural, because it's calm on screens that
+ * stay on for a 12-hour shift. Red is RESERVED for critical alerts, so when red appears
+ * anywhere on the page, it means something. Keep the hex values in WardTrendChart.jsx in sync.
+ */
+@theme {
+  --font-sans: 'Atkinson Hyperlegible Next Variable', ui-sans-serif, system-ui, sans-serif;
+
+  --color-paper: #f4f8f6;
+  --color-panel: #ffffff;
+  --color-scrub: #dcebe5;
+  --color-rule: #bcd2ca;
+  --color-ink: #12302a;
+  --color-ink-soft: #476259;
+  --color-pulse: #0b7a85;
+
+  --color-critical: #c8102e;
+  --color-critical-wash: #fdebee;
+  --color-critical-ink: #7a0a1c;
+
+  --color-caution: #d99a00;
+  --color-caution-wash: #fff3d6;
+  --color-caution-ink: #6b4500;
+}
+
+@layer base {
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-pulse);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
